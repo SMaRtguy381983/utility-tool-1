@@ -2,7 +2,8 @@ const chalk = require('chalk');
 const fs = require('fs');
 
 function write(str = '') {
-  process.stout.write(`${str}\n`);
+  // process.stout.write(`${str}\n`);
+  console.log(str);
 }
 
 exports.debug = (msg, obj = null, errLevel = 1, status = null) => {
