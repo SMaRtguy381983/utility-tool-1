@@ -1,0 +1,11 @@
+{
+  "name": "utility-tool",
+  "version": "1.0.0",
+  "description": "http://semver.org/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dustin Zeigler <contact@dustinzeigler.com> (dustinzeigler.com)",
+  "license": "ISC"
+}

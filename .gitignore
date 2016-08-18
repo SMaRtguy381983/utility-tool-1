@@ -1,0 +1,9 @@
+*.log
+*.logs
+*.sh
+.DS_Store
+.env
+.env.json
+.eslintrc.json
+logs
+node_modules
