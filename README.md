@@ -31,7 +31,7 @@ const utilityTool = require('utility-tool');
     ```
     Example:
     ```
-    $ DEBUG=true nodemon src/server.js
+    $ DEBUG=true npm start
     ```
   - #### Description
     - Displays robust debug messages in terminal.
@@ -44,7 +44,7 @@ const utilityTool = require('utility-tool');
       - ###### Example Result:
       <div style="background:blue">Thurs 8:29:15 AM</div>
       <div style="background:red">there was an error</div>
-    - ##### Display an Success Message:
+    - ##### Display a Success Message:
       ```
       utilityTool.debug('there was not an error', null, 0);
       ```
@@ -77,7 +77,9 @@ const utilityTool = require('utility-tool');
   - #### Parameters
     - n - required, Mixed
       - The variable to test.
-    - failure - required, Function
+    - failure(n) - required, Function
+      - n will be the value that was tested.
       - What to do if n is not a number.
-    - success - required, Function
+    - success(n) - required, Function
+      - n will be the value that was tested.
       - What to do if n is a number.
