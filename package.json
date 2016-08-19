@@ -1,8 +1,7 @@
 {
   "author": "Dustin Zeigler <email@zeiglerd.com> (zeiglerd.com)",
   "dependencies": {
-    "chalk": "^1.1.3",
-    "utility-tool": "^1.0.4"
+    "chalk": "^1.1.3"
   },
   "description": "http://semver.org/",
   "devDependencies": {
