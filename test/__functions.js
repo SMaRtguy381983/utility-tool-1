@@ -39,7 +39,7 @@ describe('unit tests for functions', () => {
         done();
       }));
     });
-  
+
     it("should return false if passed 'hello'", (done) => {
       if (this.app.isNumber('hello', (n) => {
         this.app.debug(`${n} is not a number`, null, 0);
@@ -48,7 +48,7 @@ describe('unit tests for functions', () => {
         this.app.debug(`${n} is a number`);
       }));
     });
-  
+
     it('should return false if passed { number: false }', (done) => {
       if (this.app.isNumber({ number: false }, (n) => {
         this.app.debug(`${n} is not a number`, null, 0);

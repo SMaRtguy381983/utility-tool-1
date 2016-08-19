@@ -18,30 +18,6 @@ exports.debug = (msg, obj = null, errLevel = 1, httpCode = null) => {
     const fDate = `${ds[d]} ${hr}:${m > 9 ? '' : '0'}${m}:${s > 9 ? '' : '0'}${s} ${suf}`;
     const fMsg = `${httpCode ? `${httpCode} - ` : ''}${chalk.bold(msg)}`;
 
-    // Write a blank line to the console
-    console.log();
-
-    // Write fDate to the console
-    console.log(chalk.bgBlue.dim(fDate));
-
-    // Check if this is not an error
-    if (!errLevel) {
-      // Write fMsg -- using green background -- to the console
-      console.log(chalk.bgGreen(fMsg));
-    } else {
-      // Write fMsg -- using red background -- to the console
-      console.log(chalk.bgRed(fMsg));
-    }
-
-    // Check if obj is not empty
-    if (obj && Object.keys(obj).length) {
-      // Write obj to the console
-      console.log(chalk.bgYellow.black(JSON.stringify(obj, null, 2)));
-    }
-
-    // Write a blank line to the console
-    console.log();
-
     // Log to file
     let pretty = date + '\n';
     pretty += (httpCode ? httpCode + ' - ' : '') + msg + '\n';
@@ -57,7 +33,44 @@ exports.debug = (msg, obj = null, errLevel = 1, httpCode = null) => {
         console.log();
       }
     });
+
+    // Write a blank line to the console
+    console.log();
+
+    // Write fDate to the console
+    console.log(chalk.bgBlue.dim(fDate));
+
+    // Check if this is not an error
+    if (!errLevel) {
+      // Write fMsg -- using green background -- to the console
+      console.log(chalk.bgGreen(fMsg));
+    } else {
+      // Write fMsg -- using red background -- to the console
+      console.log(chalk.bgRed(fMsg));
+    }
+
+    // Build a reponse for each call
+    const res = {
+      date: fDate,
+      msg: fMsg,
+    };
+
+    // Check if obj is not empty
+    if (obj && Object.keys(obj).length) {
+      // Write obj to the console
+      console.log(chalk.bgYellow.black(JSON.stringify(obj, null, 2)));
+
+      // Add obj to the response
+      res.obj = obj;
+    }
+
+    // Write a blank line to the console
+    console.log();
+
+    return res;
   }
+
+  return false;
 };
 
 exports.isNumber = (n, failure, success) => {
