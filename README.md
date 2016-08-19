@@ -10,7 +10,7 @@ Using command line:
   1. Navigate to your project's root.
   2. Type the following command:
     ```
-    $ npm i utility-tool
+    $ npm i --save utility-tool
     ```
   3. Create a folder -- in the root of the project -- called, "*logs*" (without the quotes).
   4. Include the module in each script used.
