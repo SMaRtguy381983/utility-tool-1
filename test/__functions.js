@@ -1,49 +1,60 @@
-// const expect = require('chai').expect;
+const assert = require('chai').assert;
+const expect = require('chai').expect;
 // const request = require('supertest');
-const utilTool = require('utility-tool');
+const sinon = require('sinon');
 
 describe('unit tests for functions', () => {
-  // let app;
-  //
-  // beforeEach(() => {
-  //   app = require('../src/index');
-  // });
-
-  // afterEach(() => {
-  //   app.close();
-  // });
+  beforeEach(() => {
+    this.app = require('../src/index');
+  });
 
   describe('debug function', () => {
+    beforeEach(() => {
+      sinon.stub(console, 'log');
+    });
+
+    afterEach(() => {
+      console.log.restore();
+    });
+
     it('should print to the console', (done) => {
+      this.app.debug('test debug');
+
+      assert.equal(console.log.callCount, 4);
+
+      const expectedOutput = '\u001b[41m\u001b[1mtest debug\u001b[22m\u001b[49m';
+
+      expect(console.log.getCall(2).args[0]).to.equal(expectedOutput);
+
       done();
     });
   });
 
   describe('isNumber function', () => {
     it('should return true if passed 5', (done) => {
-      if (utilTool.isNumber(5, (n) => {
-        utilTool.debug(`${n} is not a number`);
+      if (this.app.isNumber(5, (n) => {
+        this.app.debug(`${n} is not a number`);
       }, (n) => {
-        utilTool.debug(`${n} is a number`, null, 0);
+        this.app.debug(`${n} is a number`, null, 0);
         done();
       }));
     });
-
+  
     it("should return false if passed 'hello'", (done) => {
-      if (utilTool.isNumber('hello', (n) => {
-        utilTool.debug(`${n} is not a number`, null, 0);
+      if (this.app.isNumber('hello', (n) => {
+        this.app.debug(`${n} is not a number`, null, 0);
         done();
       }, (n) => {
-        utilTool.debug(`${n} is a number`);
+        this.app.debug(`${n} is a number`);
       }));
     });
-
+  
     it('should return false if passed { number: false }', (done) => {
-      if (utilTool.isNumber({ number: false }, (n) => {
-        utilTool.debug(`${n} is not a number`, null, 0);
+      if (this.app.isNumber({ number: false }, (n) => {
+        this.app.debug(`${n} is not a number`, null, 0);
         done();
       }, (n) => {
-        utilTool.debug(`${n} is a number`);
+        this.app.debug(`${n} is a number`);
       }));
     });
   });

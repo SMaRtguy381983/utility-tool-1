@@ -1,6 +1,7 @@
 *.log
 *.logs
 *.sh
+*.txt
 .DS_Store
 .env
 .env.json
