@@ -17,9 +17,9 @@
     "sinon": "^1.17.5",
     "supertest": "^2.0.0"
   },
-  "egnines": {
-    "node": "v6.3.1",
-    "npm": "3.10.3"
+  "engines": {
+    "node": "v6.4.0",
+    "npm": "3.10.6"
   },
   "license": "ISC",
   "main": "src/index.js",
