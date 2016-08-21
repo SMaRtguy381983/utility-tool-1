@@ -28,5 +28,5 @@
     "start": "node src/index.js",
     "test": "mocha"
   },
-  "version": "1.0.7"
+  "version": "1.0.8"
 }
