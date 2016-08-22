@@ -1,4 +1,5 @@
 const chalk = require('chalk');
+const fs = require('fs');
 
 exports.debug = (msg = null, obj = null, errLevel = 1, httpCode = null) => {
   if (msg || obj) {
@@ -13,6 +14,22 @@ exports.debug = (msg = null, obj = null, errLevel = 1, httpCode = null) => {
     mins = `${mins > 9 ? '' : '0'}${mins}`;
     let secs = date.getSeconds();
     secs = `${secs > 9 ? '' : '0'}${secs}`;
+
+    // Log to file
+    let pretty = date + '\n';
+    pretty += (httpCode ? httpCode + ' - ' : '') + msg + '\n';
+    // Check if obj is not empty
+    if (obj && (obj.length > 0 || Object.keys(obj).length > 0)) {
+      pretty += JSON.stringify(obj, null, 2) + '\n';
+    }
+    pretty += '\n';
+    fs.appendFile('logs/console.log', pretty, (err) => {
+      if (err) {
+        console.log(chalk.bgRed.bold('Error while writing to logs/console.log...'));
+        console.log(chalk.bgRed(err));
+        console.log();
+      }
+    });
 
     // Define friendly date and message.
     const fDate = `${day} ${hour}:${mins}:${secs} ${suff}`;
