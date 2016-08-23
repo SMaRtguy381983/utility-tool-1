@@ -15,22 +15,6 @@ exports.debug = (msg = null, obj = null, errLevel = 1, httpCode = null) => {
     let secs = date.getSeconds();
     secs = `${secs > 9 ? '' : '0'}${secs}`;
 
-    // Log to file
-    let pretty = date + '\n';
-    pretty += (httpCode ? httpCode + ' - ' : '') + msg + '\n';
-    // Check if obj is not empty
-    if (obj && (obj.length > 0 || Object.keys(obj).length > 0)) {
-      pretty += JSON.stringify(obj, null, 2) + '\n';
-    }
-    pretty += '\n';
-    fs.appendFile('logs/console.log', pretty, (err) => {
-      if (err) {
-        console.log(chalk.bgRed.bold('Error while writing to logs/console.log...'));
-        console.log(chalk.bgRed(err));
-        console.log();
-      }
-    });
-
     // Define friendly date and message.
     const fDate = `${day} ${hour}:${mins}:${secs} ${suff}`;
     let fMsg = '';
@@ -65,7 +49,7 @@ exports.debug = (msg = null, obj = null, errLevel = 1, httpCode = null) => {
         console.log(chalk.bgGreen(fMsg));
       } else {
         // Write fMsg -- using red background -- to the console.
-        console.log(chalk.bgRed(fMsg));
+        console.error(chalk.bgRed(fMsg));
       }
     }
 
