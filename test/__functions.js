@@ -3,6 +3,8 @@ const expect = require('chai').expect;
 // const request = require('supertest');
 const sinon = require('sinon');
 
+const util = require('../src/index');
+
 describe('unit tests for functions', () => {
   beforeEach(() => {
     this.app = require('../src/index');
@@ -57,5 +59,14 @@ describe('unit tests for functions', () => {
         this.app.debug(`${n} is a number`);
       }));
     });
+  });
+});
+
+// Version Number Incrementer
+describe('TimeTo_Go Version Number Increaser Test: ', () => {
+  it('Should Not Return False', (done) => {
+    if (util.vni('1.0.1', 'minor')) {
+      done();
+    }
   });
 });
