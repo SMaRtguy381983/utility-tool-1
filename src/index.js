@@ -1,5 +1,4 @@
 const chalk = require('chalk');
-const fs = require('fs');
 
 exports.debug = (msg = null, obj = null, errLevel = 1, httpCode = null) => {
   if (msg || obj) {
@@ -85,8 +84,6 @@ exports.isNumber = (n, failure, success) => {
 * vt (Version Type)
 **/
 exports.vni = (vn, vt) => {
-  const file = '/tmp/data.json';
-
   const split = vn.split('.');
 
 // I created three (3) variables for the three possible version types
