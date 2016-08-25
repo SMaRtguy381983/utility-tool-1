@@ -96,20 +96,23 @@ exports.vni = (vn, vt) => {
   if (vt.toLowerCase() === 'major') {
     // major assumes the version number (vn) entered...
     major++;
+    minor = 0;
+    patch = 0;
     // and this line is output
-    exports.debug(`You have changed your major number to ${major}`);
+    exports.debug(`You have changed your major number to ${major}`, null, 0);
     // If the vt is minor...
   } else if (vt.toLowerCase() === 'minor') {
     // minor assumes the vn entered...
     minor++;
+    patch = 0;
     // and this line is output
-    exports.debug(`You have changed your minor number to ${minor}`);
+    exports.debug(`You have changed your minor number to ${minor}`, null, 0);
     // If the vt is patch...
   } else if (vt.toLowerCase() === 'patch') {
     // patch assumes the vn entered...
     patch++;
     // and this line is output
-    exports.debug(`You have changed your patch number to ${patch}`);
+    exports.debug(`You have changed your patch number to ${patch}`, null, 0);
   } else {
     exports.debug('There has been no change to your version number.');
   }

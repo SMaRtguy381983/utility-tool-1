@@ -12,21 +12,31 @@ describe('unit tests for functions', () => {
 
   describe('debug function', () => {
     beforeEach(() => {
+      sinon.stub(console, 'error');
       sinon.stub(console, 'log');
+      sinon.stub(console, 'warn');
     });
 
     afterEach(() => {
+      console.error.restore();
       console.log.restore();
+      console.warn.restore();
     });
 
     it('should print to the console', (done) => {
       this.app.debug('test debug');
 
-      assert.equal(console.log.callCount, 4);
+      const errorCallCount = console.error.callCount || 0;
+      const logCallCount = console.log.callCount || 0;
+      const warnCallCount = console.warn.callCount || 0;
+
+      const totalCalls = errorCallCount + logCallCount + warnCallCount;
+
+      assert.equal(totalCalls, 4);
 
       const expectedOutput = '\u001b[41m\u001b[1mtest debug\u001b[22m\u001b[49m';
 
-      expect(console.log.getCall(2).args[0]).to.equal(expectedOutput);
+      expect(console.error.getCall(0).args[0]).to.equal(expectedOutput);
 
       done();
     });
@@ -63,7 +73,7 @@ describe('unit tests for functions', () => {
 });
 
 // Version Number Incrementer
-describe('TimeTo_Go Version Number Increaser Test: ', () => {
+describe('utility-tool Version Number Increaser Test: ', () => {
   it('Should Not Return False', (done) => {
     if (util.vni('1.0.1', 'minor')) {
       done();
